@@ -414,7 +414,7 @@
 //    }
 //}
 
-// V4
+// V4 WORKING VERSION WITH BOTH PRINTING SUMMARY AND PDF FILE OUTPUTS
 
 package org.example.backend;
 
@@ -444,7 +444,7 @@ public class SummarizerControllerTest {
     @Test
     public void testSummarizeBookPdfWithFlaskApi() throws Exception {
         // Specify the absolute path to Meditations.pdf
-        String pdfFilePath = "C:\\Users\\nikoz\\OneDrive\\Desktop\\Books\\TheMetamorphosis.pdf"; // Replace with actual path
+        String pdfFilePath = "C:\\Users\\nikoz\\OneDrive\\Desktop\\Books\\Small.pdf"; // Replace with actual path
         Path pdfPath = Paths.get(pdfFilePath);
 
         // Verify the file exists
@@ -456,7 +456,7 @@ public class SummarizerControllerTest {
         byte[] pdfContent = Files.readAllBytes(pdfPath);
         MockMultipartFile file = new MockMultipartFile(
                 "file",
-                "Meditations.pdf",
+                "Small.pdf",
                 "application/pdf",
                 pdfContent
         );
@@ -469,7 +469,7 @@ public class SummarizerControllerTest {
                 .andExpect(status().isOk())
                 .andDo(result -> {
                     String response = result.getResponse().getContentAsString();
-                    System.out.println("Meditations PDF Response: " + response);
+                    System.out.println("Small PDF Response: " + response);
                     System.out.println("Time taken: " + (System.currentTimeMillis() - startTime) / 1000.0 + " seconds");
                     assertFalse(response.contains("error"), "Response should not contain an error");
                     assertTrue(response.length() > 10, "Response should not be empty");
@@ -482,7 +482,7 @@ public class SummarizerControllerTest {
     @Test
     public void testSummarizePdfWithFlaskApi() throws Exception {
         // Specify the absolute path to a test PDF (or reuse Meditations.pdf)
-        String pdfFilePath = "C:\\Users\\nikoz\\OneDrive\\Desktop\\Books\\Meditations.pdf"; // Replace with actual path
+        String pdfFilePath = "C:\\Users\\nikoz\\OneDrive\\Desktop\\Books\\Small.pdf"; // Replace with actual path
         Path pdfPath = Paths.get(pdfFilePath);
 
         // Verify the file exists
@@ -494,7 +494,7 @@ public class SummarizerControllerTest {
         byte[] pdfContent = Files.readAllBytes(pdfPath);
         MockMultipartFile file = new MockMultipartFile(
                 "file",
-                "Meditations.pdf",
+                "Small.pdf",
                 "application/pdf",
                 pdfContent
         );

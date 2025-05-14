@@ -59,7 +59,7 @@ const FileUploader = () => {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:8080/summarize/pdf', {
+      const response = await fetch('http://localhost:8080`/api/summarize/pdf', {
         method: 'POST',
         body: formData,
       });

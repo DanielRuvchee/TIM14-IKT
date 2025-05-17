@@ -1,0 +1,3 @@
+[submodule "BookSummaryAPI"]
+	path = BookSummaryAPI
+	url = https://github.com/zdrave123/BookSummaryAPI.git

@@ -15,9 +15,10 @@ const Books: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/books/all")
+        axios.get("http://localhost:8081/api/books/all")
             .then(response => {
-                setBooks(response.data);
+                console.log("API Response:", response.data);
+                setBooks(response.data); // Just use the response directly
             })
             .catch(error => {
                 console.error("Error fetching books:", error);
@@ -28,6 +29,7 @@ const Books: React.FC = () => {
     const handleViewDetails = (id: string) => {
         navigate(`/books/${id}`);
     };
+
     return (
         <div className="min-h-screen bg-turquoise-light/30">
             <Navbar />
@@ -42,9 +44,9 @@ const Books: React.FC = () => {
                         <p className="text-center text-red-500">
                             Failed to fetch books. Please check if the backend is running.
                         </p>
-                    ) : books.length > 0 ? (
+                    ) : books && books.length > 0 ? (
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                            {books.map(book => (
+                            {Array.isArray(books) ? books.map(book => (
                                 <div key={book.id} className="bg-gray-100 p-4 rounded-lg shadow-lg">
                                     <h2 className="text-lg font-bold mt-3 text-gray-800">{book.title}</h2>
                                     <button
@@ -54,7 +56,7 @@ const Books: React.FC = () => {
                                         View Details
                                     </button>
                                 </div>
-                            ))}
+                            )) : <p>Error: Expected books to be an array</p>}
                         </div>
                     ) : (
                         <p className="text-center text-gray-600">

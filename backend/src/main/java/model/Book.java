@@ -10,13 +10,15 @@ public class Book {
     private String id;
     private String title;
     private String content;
+    private String author;
 
     public Book() {}
 
-    public Book(String id, String title, String content) {
+    public Book(String id, String title, String content, String author) {
         this.id = id;
         this.title = title;
         this.content = content;
+        this.author = author;
     }
 
     public String getId() { return id; }
@@ -27,4 +29,8 @@ public class Book {
 
     public String getContent() { return content; }
     public void setContent(String content) { this.content = content; }
+
+    public String getAuthor() {
+        return author;
+    }
 }

@@ -1,12 +1,12 @@
 
-package controller;
+package org.example.backend.controller;
 
 
-import model.Book;
+import org.example.backend.model.Book;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import repository.BookRepository;
+import org.example.backend.repository.BookRepository;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,12 +1,11 @@
-package controller;
+package org.example.backend.controller;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
-import service.BookInfoService;
-import service.BookInfoService.BookInfo;
-import service.HuggingFaceSummarizer;
+import org.example.backend.service.BookInfoService;
+import org.example.backend.service.HuggingFaceSummarizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +36,7 @@ public class SummarizerController {
     public ResponseEntity<String> summarizePdf(@RequestParam("file") MultipartFile file) {
         try {
             // 1. Extract title and author
-            BookInfo bookInfo = bookInfoService.extractTitleAndAuthorFromPdf(file);
+            BookInfoService.BookInfo bookInfo = bookInfoService.extractTitleAndAuthorFromPdf(file);
             System.out.println("Extracted Title: " + bookInfo.title);
             System.out.println("Extracted Author: " + bookInfo.author);
 

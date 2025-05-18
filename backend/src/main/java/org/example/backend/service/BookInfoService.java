@@ -1,4 +1,4 @@
-package service;
+package org.example.backend.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -56,7 +56,7 @@ public class BookInfoService {
             String prompt = "Extract the title and author of the book from the following text. The title should be the primary book title (e.g., 'Meditations'), not a series, edition, or collection name. Ignore metadata like 'Edited by' or 'Translated by'. Respond with only the title and author, each on a new line:\n\n" + extractedText;
 
             String jsonPayload = objectMapper.writeValueAsString(Map.of(
-                    "model", "deepseek/deepseek-chat:free",
+                    "org/example/backend/model", "deepseek/deepseek-chat:free",
                     "messages", List.of(
                             Map.of("role", "user", "content", prompt)
                     ),

@@ -8,6 +8,7 @@ interface Book {
     id: string;
     title: string;
     content: string;
+    author: string;
 }
 
 const BookDetails: React.FC = () => {
@@ -18,7 +19,7 @@ const BookDetails: React.FC = () => {
 
     useEffect(() => {
         if (!id) return;
-        axios.get(`http://localhost:8080/api/books/${id}`)
+        axios.get(`http://localhost:8081/api/books/${id}`)
             .then(response => {
                 if (response.data) {
                     setBook(response.data);
@@ -42,6 +43,7 @@ const BookDetails: React.FC = () => {
             <div className="max-w-4xl mx-auto px-4 py-10">
                 <div className="bg-white p-6 rounded-lg shadow-lg">
                     <h1 className="text-3xl font-bold text-gray-800">{book.title}</h1>
+                    <h2 className="mt-4 text-gray-700 whitespace-pre-wrap">{book.author}</h2>
                     <p className="mt-4 text-gray-700 whitespace-pre-wrap">{book.content}</p>
                 </div>
             </div>

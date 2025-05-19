@@ -2,7 +2,14 @@ import React, { useRef, useState } from 'react';
 import { Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-const FileUploader = () => {
+interface FileUploaderProps {
+  onSummaryReady: (summary: {
+    title: string;
+    author: string;
+    summary: string;
+  }) => void;
+}
+const FileUploader = ({ onSummaryReady }: FileUploaderProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [summary, setSummary] = useState<string | null>(null);
@@ -59,7 +66,7 @@ const FileUploader = () => {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:8080`/api/summarize/pdf', {
+      const response = await fetch('http://localhost:8081/api/summarize/pdf', {
         method: 'POST',
         body: formData,
       });
@@ -68,8 +75,9 @@ const FileUploader = () => {
         throw new Error(`Upload failed: ${response.statusText}`);
       }
 
-      const result = await response.text();
-      setSummary(result);
+      const result = await response.json(); // Expecting BookSummaryDTO
+      setSummary(result.summary); // Optional if you still want local view
+      onSummaryReady(result); // Send full summary to parent
     } catch (err: any) {
       setError(err.message || 'Failed to upload and summarize file.');
     }

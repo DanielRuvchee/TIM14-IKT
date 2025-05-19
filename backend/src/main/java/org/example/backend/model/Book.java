@@ -11,14 +11,24 @@ public class Book {
     private String title;
     private String content;
     private String author;
+    private String category;
 
     public Book() {}
 
-    public Book(String id, String title, String content, String author) {
+    public Book(String id, String title, String content, String author, String category) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.author = author;
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getId() { return id; }

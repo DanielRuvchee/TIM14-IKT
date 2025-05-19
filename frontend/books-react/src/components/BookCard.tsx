@@ -4,7 +4,7 @@ const BookCard = ({ book, onViewDetails }) => {
     return (
         <div className="bg-white rounded-lg shadow-md overflow-hidden w-40">
             <img
-                src={book.coverUrl}
+                src={book.url}
                 alt={book.title}
                 className="w-full h-40 object-cover"
             />

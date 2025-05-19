@@ -41,7 +41,7 @@ const Index = () => {
             <Navbar />
 
             <div className="max-w-5xl mx-auto px-4 pt-16 pb-24">
-                <h1 className="text-3xl font-bold text-center text-white mb-8">
+                <h1 className="text-3xl font-bold text-center text-black mb-8">
                     AI Book Summarizer - Summarize Your Books
                 </h1>
 
